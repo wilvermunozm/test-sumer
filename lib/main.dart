@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'app_module.dart';
+import 'injection_container.dart' as di;
 
 void main() async {
   await di.init();
@@ -21,7 +22,6 @@ class AppState extends StatelessWidget {
 class GifApp extends StatelessWidget {
   const GifApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
