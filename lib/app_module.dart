@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:test_sumer/features/landing_page/home_page.dart';
+
+import 'features/landing_page/presentation/home_page.dart';
 
 class AppModule extends Module {
   @override
@@ -10,11 +11,7 @@ class AppModule extends Module {
   List<ModularRoute> get routes => <ModularRoute>[
         ChildRoute<dynamic>(
           Modular.initialRoute,
-          child: (
-            BuildContext context,
-            dynamic args,
-          ) =>
-              const HomePage(),
+          child: (BuildContext context, dynamic args) => const HomePage(),
         ),
       ];
 }
