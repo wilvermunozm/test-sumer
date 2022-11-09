@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:test_sumer/features/landing_page/presentation/cubit/gift/gif_cubit.dart';
 
 import 'app_module.dart';
 import 'injection_container.dart' as di;
+import 'injection_container.dart';
 
 void main() async {
   await di.init();
@@ -28,10 +31,15 @@ class GifApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
     Modular.setInitialRoute(Modular.initialRoute);
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routeInformationParser: Modular.routeInformationParser,
-      routerDelegate: Modular.routerDelegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<GifCubit>(create: (_) => sl()),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routeInformationParser: Modular.routeInformationParser,
+        routerDelegate: Modular.routerDelegate,
+      ),
     );
   }
 }

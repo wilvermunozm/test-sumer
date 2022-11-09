@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:test_sumer/features/landing_page/presentation/cubit/gift/gif_cubit.dart';
 import 'package:test_sumer/features/landing_page/presentation/widgets/git_item.dart';
+import 'package:test_sumer/features/landing_page/presentation/widgets/search_box.dart';
 
-import '../../../core/config/constants/colors.dart';
 import '../../../core/config/constants/dimensions.dart';
+import '../domain/models/gift_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    context.read<GifCubit>().requestGifList();
   }
 
   @override
@@ -22,35 +27,33 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: kDimens50, left: kDimens10, right: kDimens10, bottom: kDimens10),
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kDimens10),
-              ),
-              height: kDimens50,
-              child: const TextField(
-                textInputAction: TextInputAction.search,
-                // focusNode: _focusInput,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                  hintStyle: TextStyle(fontSize: kDimens16),
-                  prefixIcon: Icon(
-                    Icons.search_outlined,
-                    color: kColorBlack,
-                    size: kDimens30,
-                  ),
-                  hintText: 'Search by name',
-                  filled: true,
-                ),
-              ),
-            ),
-          ),
-          const Expanded(child: GifItem()),
+          const SearchBox(),
+          Expanded(child: BlocBuilder<GifCubit, GiftState>(
+            builder: (context, state) {
+              return _gifList(giftList: state.giftModel);
+            },
+          )),
         ],
+      ),
+    );
+  }
+
+  Widget _gifList({required List<GiftModel> giftList}) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: kDimens20,
+        left: kDimens20,
+        right: kDimens20,
+      ),
+      child: MasonryGridView.count(
+        itemCount: giftList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(kDimens8),
+            child: GiftItem(gif: giftList[index]),
+          );
+        },
+        crossAxisCount: 2,
       ),
     );
   }
