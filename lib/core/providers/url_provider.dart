@@ -3,11 +3,11 @@ class UrlProvider {
     String enviromentUrl = _getUrl();
 
     if (params == null) {
-      return Uri.https(enviromentUrl, path);
+      return Uri.http(enviromentUrl, path);
     } else {
-      return Uri.https(enviromentUrl, path, params);
+      return Uri.http(enviromentUrl, path, params);
     }
   }
 
-  String _getUrl() => "";
+  String _getUrl() => "api.giphy.com";
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'features/landing_page/presentation/home_page.dart';
+import 'features/home/presentation/home_page.dart';
 
 class AppModule extends Module {
   @override
