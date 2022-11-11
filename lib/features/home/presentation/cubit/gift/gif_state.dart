@@ -1,16 +1,18 @@
 part of 'gif_cubit.dart';
 
 @freezed
-abstract class GiftState with _$GiftState {
-  const factory GiftState({
+abstract class GifState with _$GifState {
+  const factory GifState({
     required List<GifModel> gifList,
+    required List<String> favoriteList,
     required bool isLoading,
     Failure? error,
-  }) = _GiftState;
+  }) = _GifState;
 
-  factory GiftState.initial() => const GiftState(
+  factory GifState.initial() => const GifState(
         gifList: [],
         isLoading: false,
         error: null,
+        favoriteList: [],
       );
 }

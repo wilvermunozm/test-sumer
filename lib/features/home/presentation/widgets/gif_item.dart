@@ -24,11 +24,10 @@ class GifItem extends StatelessWidget {
           fit: BoxFit.cover,
           height: gif.height,
         ),
-
         Positioned(
           bottom: kDimens5,
           right: kDimens5,
-          child: FavoriteWidget(favorite: gif.favorite),
+          child: FavoriteWidget(gif: gif),
         ),
       ],
     );

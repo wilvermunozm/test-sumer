@@ -13,9 +13,9 @@ class GifRepositoryImpl extends GifRepository {
   GifRepositoryImpl({GifRemoteDataSource? gifRemoteDataSource}) : _gifRemoteDataSource = gifRemoteDataSource ?? sl();
 
   @override
-  Future<Either<Failure, List<GifModel>>> getGifs() async {
+  Future<Either<Failure, List<GifModel>>> getGifs(String search) async {
     try {
-      var result = await _gifRemoteDataSource.getGifs();
+      var result = await _gifRemoteDataSource.getGifs(searchText: search);
       final gifModels = result.map((gifDTO) => gifDTO.toModel()).toList();
       return Right(gifModels);
     } on ServerFailure catch (e) {

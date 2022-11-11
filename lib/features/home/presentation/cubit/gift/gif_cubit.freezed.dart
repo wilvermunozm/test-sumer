@@ -15,28 +15,33 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$GiftState {
+mixin _$GifState {
   List<GifModel> get gifList => throw _privateConstructorUsedError;
+  List<String> get favoriteList => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Failure? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $GiftStateCopyWith<GiftState> get copyWith =>
+  $GifStateCopyWith<GifState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GiftStateCopyWith<$Res> {
-  factory $GiftStateCopyWith(GiftState value, $Res Function(GiftState) then) =
-      _$GiftStateCopyWithImpl<$Res, GiftState>;
+abstract class $GifStateCopyWith<$Res> {
+  factory $GifStateCopyWith(GifState value, $Res Function(GifState) then) =
+      _$GifStateCopyWithImpl<$Res, GifState>;
   @useResult
-  $Res call({List<GifModel> gifList, bool isLoading, Failure? error});
+  $Res call(
+      {List<GifModel> gifList,
+      List<String> favoriteList,
+      bool isLoading,
+      Failure? error});
 }
 
 /// @nodoc
-class _$GiftStateCopyWithImpl<$Res, $Val extends GiftState>
-    implements $GiftStateCopyWith<$Res> {
-  _$GiftStateCopyWithImpl(this._value, this._then);
+class _$GifStateCopyWithImpl<$Res, $Val extends GifState>
+    implements $GifStateCopyWith<$Res> {
+  _$GifStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -47,6 +52,7 @@ class _$GiftStateCopyWithImpl<$Res, $Val extends GiftState>
   @override
   $Res call({
     Object? gifList = null,
+    Object? favoriteList = null,
     Object? isLoading = null,
     Object? error = freezed,
   }) {
@@ -55,6 +61,10 @@ class _$GiftStateCopyWithImpl<$Res, $Val extends GiftState>
           ? _value.gifList
           : gifList // ignore: cast_nullable_to_non_nullable
               as List<GifModel>,
+      favoriteList: null == favoriteList
+          ? _value.favoriteList
+          : favoriteList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -68,35 +78,44 @@ class _$GiftStateCopyWithImpl<$Res, $Val extends GiftState>
 }
 
 /// @nodoc
-abstract class _$$_GiftStateCopyWith<$Res> implements $GiftStateCopyWith<$Res> {
-  factory _$$_GiftStateCopyWith(
-          _$_GiftState value, $Res Function(_$_GiftState) then) =
-      __$$_GiftStateCopyWithImpl<$Res>;
+abstract class _$$_GifStateCopyWith<$Res> implements $GifStateCopyWith<$Res> {
+  factory _$$_GifStateCopyWith(
+          _$_GifState value, $Res Function(_$_GifState) then) =
+      __$$_GifStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<GifModel> gifList, bool isLoading, Failure? error});
+  $Res call(
+      {List<GifModel> gifList,
+      List<String> favoriteList,
+      bool isLoading,
+      Failure? error});
 }
 
 /// @nodoc
-class __$$_GiftStateCopyWithImpl<$Res>
-    extends _$GiftStateCopyWithImpl<$Res, _$_GiftState>
-    implements _$$_GiftStateCopyWith<$Res> {
-  __$$_GiftStateCopyWithImpl(
-      _$_GiftState _value, $Res Function(_$_GiftState) _then)
+class __$$_GifStateCopyWithImpl<$Res>
+    extends _$GifStateCopyWithImpl<$Res, _$_GifState>
+    implements _$$_GifStateCopyWith<$Res> {
+  __$$_GifStateCopyWithImpl(
+      _$_GifState _value, $Res Function(_$_GifState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? gifList = null,
+    Object? favoriteList = null,
     Object? isLoading = null,
     Object? error = freezed,
   }) {
-    return _then(_$_GiftState(
+    return _then(_$_GifState(
       gifList: null == gifList
           ? _value._gifList
           : gifList // ignore: cast_nullable_to_non_nullable
               as List<GifModel>,
+      favoriteList: null == favoriteList
+          ? _value._favoriteList
+          : favoriteList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -111,18 +130,27 @@ class __$$_GiftStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GiftState implements _GiftState {
-  const _$_GiftState(
+class _$_GifState implements _GifState {
+  const _$_GifState(
       {required final List<GifModel> gifList,
+      required final List<String> favoriteList,
       required this.isLoading,
       this.error})
-      : _gifList = gifList;
+      : _gifList = gifList,
+        _favoriteList = favoriteList;
 
   final List<GifModel> _gifList;
   @override
   List<GifModel> get gifList {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_gifList);
+  }
+
+  final List<String> _favoriteList;
+  @override
+  List<String> get favoriteList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favoriteList);
   }
 
   @override
@@ -132,45 +160,54 @@ class _$_GiftState implements _GiftState {
 
   @override
   String toString() {
-    return 'GiftState(gifList: $gifList, isLoading: $isLoading, error: $error)';
+    return 'GifState(gifList: $gifList, favoriteList: $favoriteList, isLoading: $isLoading, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GiftState &&
+            other is _$_GifState &&
             const DeepCollectionEquality().equals(other._gifList, _gifList) &&
+            const DeepCollectionEquality()
+                .equals(other._favoriteList, _favoriteList) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_gifList), isLoading, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_gifList),
+      const DeepCollectionEquality().hash(_favoriteList),
+      isLoading,
+      error);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GiftStateCopyWith<_$_GiftState> get copyWith =>
-      __$$_GiftStateCopyWithImpl<_$_GiftState>(this, _$identity);
+  _$$_GifStateCopyWith<_$_GifState> get copyWith =>
+      __$$_GifStateCopyWithImpl<_$_GifState>(this, _$identity);
 }
 
-abstract class _GiftState implements GiftState {
-  const factory _GiftState(
+abstract class _GifState implements GifState {
+  const factory _GifState(
       {required final List<GifModel> gifList,
+      required final List<String> favoriteList,
       required final bool isLoading,
-      final Failure? error}) = _$_GiftState;
+      final Failure? error}) = _$_GifState;
 
   @override
   List<GifModel> get gifList;
+  @override
+  List<String> get favoriteList;
   @override
   bool get isLoading;
   @override
   Failure? get error;
   @override
   @JsonKey(ignore: true)
-  _$$_GiftStateCopyWith<_$_GiftState> get copyWith =>
+  _$$_GifStateCopyWith<_$_GifState> get copyWith =>
       throw _privateConstructorUsedError;
 }

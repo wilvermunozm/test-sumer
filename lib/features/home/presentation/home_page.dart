@@ -31,13 +31,16 @@ class _HomePageState extends State<HomePage> {
         children: [
           const SearchBox(),
           Expanded(
-            child: BlocBuilder<GifCubit, GiftState>(
+            child: BlocBuilder<GifCubit, GifState>(
               builder: (context, state) {
                 if (state.isLoading) {
                   return const LoaderWidget();
                 }
                 if (state.error != null) {
                   return const WrongWidget();
+                }
+                if (state.gifList.isEmpty) {
+                  return const Center(child: Text("No hay resultados para mostrar"));
                 }
                 return _gifList(giftList: state.gifList);
               },
